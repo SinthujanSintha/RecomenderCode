@@ -25,19 +25,16 @@ tfidf_matrix = tfidf.fit_transform(df2['overview'])
 # Compute the cosine similarity matrix
 cosine_similarity = linear_kernel(tfidf_matrix, tfidf_matrix)
 
-# Construct a reverse map of indices and movie titles
-indices = panda.Series(df2.index, index=df2['title']).drop_duplicates()
-
-# Construct a reverse map of indices and movie titles
-indices = panda.Series(df2.index, index=df2['title']).drop_duplicates()
-
 
 # Function that takes in movie title as input and outputs most similar movies
-def get_recommendations(title, cosine_sim):
+def get_recommendations(title, cosine_sim, data_frame):
+    # Construct a reverse map of indices and movie titles
+    indices = panda.Series(data_frame.index, index=data_frame['title']).drop_duplicates()
+
     # Get the index of the movie that matches the title
     idx = indices[title]
 
-    # Get the pairwsie similarity scores of all movies with that movie
+    # Get the pairwise similarity scores of all movies with that movie
     sim_scores = list(enumerate(cosine_sim[idx]))
 
     # Sort the movies based on the similarity scores
@@ -53,5 +50,5 @@ def get_recommendations(title, cosine_sim):
     return df2['title'].iloc[movie_indices]
 
 
-recommend_movies = get_recommendations('The Avengers', cosine_similarity)
+recommend_movies = get_recommendations('The Avengers', cosine_similarity, df2)
 # print(recommend_movies)
