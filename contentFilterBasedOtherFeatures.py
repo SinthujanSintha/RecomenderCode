@@ -89,4 +89,5 @@ cosine_similarity2 = cosine_similarity(count_matrix, count_matrix)
 df2 = df2.reset_index()
 indices = panda.Series(df2.index, index=df2['title'])
 
-get_recommendations('The Godfather', cosine_similarity2)
+recommend_movies = get_recommendations('The Avengers', cosine_similarity2, df2)
+print(recommend_movies)
