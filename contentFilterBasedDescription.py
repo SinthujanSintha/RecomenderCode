@@ -28,6 +28,13 @@ cosine_similarity = linear_kernel(tfidf_matrix, tfidf_matrix)
 
 # Function that takes in movie title as input and outputs most similar movies
 def get_recommendations(title, cosine_sim, data_frame):
+    """
+
+    :param title: title of the movies
+    :param cosine_sim: cosine similarity matrix
+    :param data_frame: data set of movies
+    :return: return the list with ten movies which are suitable to target movies
+    """
     # Construct a reverse map of indices and movie titles
     indices = panda.Series(data_frame.index, index=data_frame['title']).drop_duplicates()
 
