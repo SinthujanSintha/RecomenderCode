@@ -3,7 +3,7 @@ from surprise import Reader, Dataset, SVD
 from surprise.model_selection import cross_validate
 
 reader = Reader()
-ratings = panda.read_csv('/home/sinthujan/SinthuProgramming/PythonPyCharm/RecomederSytems/CommonRecommender/RecomenderCode/Dataset/ratings.csv')
+ratings = panda.read_csv('/home/sinthujan/SinthuProgramming/PythonPyCharm/RecomederSytems/RecomenderCode/DataSet/ratings.csv')
 # print(ratings.head())
 
 data = Dataset.load_from_df(ratings[['userId', 'movieId', 'rating']], reader)
@@ -15,4 +15,4 @@ trainset = data.build_full_trainset()
 svd.fit(trainset)
 # print(ratings[ratings['userId'] == 1])
 
-print(svd.predict(1, 302, 3))
+print(svd.predict(1, 302))

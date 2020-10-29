@@ -1,8 +1,9 @@
-import pandas as pd
+import pandas as panda
 import matplotlib.pyplot as plt
 
-df1=pd.read_csv('Dataset/tmdb_5000_credits.csv')
-df2=pd.read_csv('Dataset/tmdb_5000_movies.csv')
+df1 = panda.read_csv('/home/sinthujan/SinthuProgramming/PythonPyCharm/RecomederSytems/RecomenderCode/DataSet/tmdb_5000_credits.csv')
+df2 = panda.read_csv('/home/sinthujan/SinthuProgramming/PythonPyCharm/RecomederSytems/RecomenderCode/DataSet/tmdb_5000_movies.csv')
+
 
 
 df1.columns = ['id','tittle','cast','crew']
