@@ -1,6 +1,7 @@
 import pandas as pd
-import numpy as np
 from math import sqrt
+from surprise.model_selection import cross_validate
+from surprise import KNNBasic, Dataset, Reader
 
 # Storing the movie information into a pandas dataframe
 movies_df = pd.read_csv(
@@ -106,14 +107,23 @@ tempTopUsersRating = topUsersRating.groupby('movieId').sum()[['similarityIndex',
 tempTopUsersRating.columns = ['sum_similarityIndex', 'sum_weightedRating']
 # print(tempTopUsersRating.head())
 
-#Creates an empty dataframe
+
+# Creates an empty dataframe
 recommendation_df = pd.DataFrame()
-#Now we take the weighted average
-recommendation_df['weighted average recommendation score'] = tempTopUsersRating['sum_weightedRating']/tempTopUsersRating['sum_similarityIndex']
+# Now we take the weighted average
+recommendation_df['weighted average recommendation score'] = tempTopUsersRating['sum_weightedRating'] / \
+                                                             tempTopUsersRating['sum_similarityIndex']
 recommendation_df['movieId'] = tempTopUsersRating.index
 # print(recommendation_df.head())
 
 recommendation_df = recommendation_df.sort_values(by='weighted average recommendation score', ascending=False)
 # print(recommendation_df.head(10))
+
+reader = Reader()
+# ratings_df= ratings_df.take(ratings_df.index[0:100836])
+data = Dataset.load_from_df(ratings_df[['userId', 'movieId', 'rating']], reader)
+
+# algo = KNNBasic(sim_options={'name': 'pearson', 'user_based': True})
+# print(cross_validate(algo, data, measures=['RMSE', 'MAE', 'FCP'], cv=3, verbose=True))
 
 print(movies_df.loc[movies_df['movieId'].isin(recommendation_df.head(10)['movieId'].tolist())])

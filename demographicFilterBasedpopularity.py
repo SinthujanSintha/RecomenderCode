@@ -10,7 +10,7 @@ df1.columns = ['id','tittle','cast','crew']
 df2= df2.merge(df1,on='id')
 
 pop= df2.sort_values('popularity', ascending=False)
-# print(pop[['popularity','title']].head(5))
+print(pop[['popularity','title']].head(5))
 
 plt.figure(figsize=(12,4))
 

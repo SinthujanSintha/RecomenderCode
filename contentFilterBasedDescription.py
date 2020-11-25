@@ -52,10 +52,10 @@ def get_recommendations(title, cosine_sim, data_frame):
 
     # Get the movie indices
     movie_indices = [i[0] for i in sim_scores]
-
+    
     # Return the top 10 most similar movies
     return data_frame['title'].iloc[movie_indices]
 
 
-recommend_movies = get_recommendations('The Avengers', cosine_similarity, df2)
+get_recommendations('The Avengers', cosine_similarity, df2)
 # print(recommend_movies)

@@ -6,11 +6,14 @@ import pandas as panda
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 from contentFilterBasedDescription import get_recommendations
+from sklearn.metrics import precision_score
 
-df1 = panda.read_csv('/home/sinthujan/SinthuProgramming/PythonPyCharm/RecomederSytems/RecomenderCode/DataSet/tmdb_5000_credits.csv')
-df2 = panda.read_csv('/home/sinthujan/SinthuProgramming/PythonPyCharm/RecomederSytems/RecomenderCode/DataSet/tmdb_5000_movies.csv')
-
-
+df1 = panda.read_csv(
+    '/home/sinthujan/SinthuProgramming/PythonPyCharm/RecomederSytems/RecomenderCode/DataSet/tmdb_5000_credits.csv')
+df2 = panda.read_csv(
+    '/home/sinthujan/SinthuProgramming/PythonPyCharm/RecomederSytems/RecomenderCode/DataSet/tmdb_5000_movies.csv')
+# df1 = df1.take(df1.index[0:1250])
+# df2 = df2.take(df2.index[0:2500])
 df1.columns = ['id', 'tittle', 'cast', 'crew']
 df2 = df2.merge(df1, on='id')
 
@@ -67,7 +70,7 @@ def clean_data(x):
             return ''
 
 
-# Apply clean_data function to your features.
+# Apply clean_data nkafunction to your features.
 features3 = ['cast', 'keywords', 'director', 'genres']
 
 for feature in features3:
@@ -85,10 +88,15 @@ count = CountVectorizer(stop_words='english')
 count_matrix = count.fit_transform(df2['soup'])
 
 cosine_similarity2 = cosine_similarity(count_matrix, count_matrix)
-
+# precision= precision_score()
 # Reset index of our main DataFrame and construct reverse mapping
 df2 = df2.reset_index()
 indices = panda.Series(df2.index, index=df2['title'])
 
-recommend_movies = get_recommendations('The Avengers', cosine_similarity2, df2)
+recommend_movies = get_recommendations('Iron Man', cosine_similarity2, df2)
 print(recommend_movies)
+
+# precision = 6 / 10  # total true similar movies 6 out of 10 predicted movies.
+# recall = 6 / 12 # total true similar movies 6 out of 9  real  top true movies.
+# print('precison = ' ,precision)
+# print("recall = ",recall)
