@@ -2,8 +2,8 @@ import pandas as panda
 from sklearn.metrics.pairwise import linear_kernel
 from sklearn.feature_extraction.text import TfidfVectorizer
 
-df1 = panda.read_csv('/home/sinthujan/SinthuProgramming/PythonPyCharm/RecomederSytems/RecomenderCode/DataSet/tmdb_5000_credits.csv')
-df2 = panda.read_csv('/home/sinthujan/SinthuProgramming/PythonPyCharm/RecomederSytems/RecomenderCode/DataSet/tmdb_5000_movies.csv')
+df1 = panda.read_csv('DataSet/tmdb_5000_credits.csv')
+df2 = panda.read_csv('DataSet/tmdb_5000_movies.csv')
 
 df1.columns = ['id', 'tittle', 'cast', 'crew']
 df2 = df2.merge(df1, on='id')
@@ -56,6 +56,4 @@ def get_recommendations(title, cosine_sim, data_frame):
     # Return the top 10 most similar movies
     return data_frame['title'].iloc[movie_indices]
 
-
-get_recommendations('The Avengers', cosine_similarity, df2)
-# print(recommend_movies)
+print(get_recommendations('The Avengers', cosine_similarity, df2))

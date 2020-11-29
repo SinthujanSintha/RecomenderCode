@@ -5,10 +5,10 @@ from surprise import KNNBasic, Dataset, Reader
 
 # Storing the movie information into a pandas dataframe
 movies_df = pd.read_csv(
-    '/home/sinthujan/SinthuProgramming/PythonPyCharm/RecomederSytems/RecomenderCode/DataSet/movies.csv')
+    'DataSet/movies.csv')
 # Storing the user information into a pandas dataframe
 ratings_df = pd.read_csv(
-    '/home/sinthujan/SinthuProgramming/PythonPyCharm/RecomederSytems/RecomenderCode/DataSet/ratings.csv')
+    'DataSet/ratings.csv')
 
 # Using regular expressions to find a year stored between parentheses
 # We specify the parantheses so we don’t conflict with movies that have years in their titles

@@ -9,9 +9,9 @@ from contentFilterBasedDescription import get_recommendations
 from sklearn.metrics import precision_score
 
 df1 = panda.read_csv(
-    '/home/sinthujan/SinthuProgramming/PythonPyCharm/RecomederSytems/RecomenderCode/DataSet/tmdb_5000_credits.csv')
+    'DataSet/tmdb_5000_credits.csv')
 df2 = panda.read_csv(
-    '/home/sinthujan/SinthuProgramming/PythonPyCharm/RecomederSytems/RecomenderCode/DataSet/tmdb_5000_movies.csv')
+    'DataSet/tmdb_5000_movies.csv')
 # df1 = df1.take(df1.index[0:1250])
 # df2 = df2.take(df2.index[0:2500])
 df1.columns = ['id', 'tittle', 'cast', 'crew']

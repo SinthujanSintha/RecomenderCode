@@ -3,7 +3,7 @@ from surprise import Reader, Dataset, SVD
 from surprise.model_selection import cross_validate
 
 reader = Reader()
-ratings = panda.read_csv('/home/sinthujan/SinthuProgramming/PythonPyCharm/RecomederSytems/RecomenderCode/DataSet/ratings.csv')
+ratings = panda.read_csv('DataSet/ratings.csv')
 # print(ratings.head())
 
 # ratings= ratings.take(ratings.index[0:25214])
